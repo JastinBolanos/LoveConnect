@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, Search, Globe, ChevronDown, Bell, Sparkles, MessageCircle } from 'lucide-react';
+import { SparkJoinButton } from './SparkJoinButton';
 
 interface NavbarProps {
   onOpenJoin: () => void;
@@ -28,24 +29,32 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 w-full bg-[#120826]/95 backdrop-blur-lg border-b border-pink-500/20 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 py-4 sm:py-5 lg:py-6 transition-all duration-300 shadow-lg shadow-black/20">
       <div className="w-full flex items-center justify-between gap-4">
-        {/* Brand Logo */}
+        {/* Brand Logo with Lively Animation */}
         <button 
           id="nav-logo-btn"
           onClick={() => setActiveTab('Home')}
-          className="flex items-center gap-3.5 sm:gap-4 group text-left cursor-pointer focus:outline-none shrink-0"
+          className="flex items-center gap-3.5 sm:gap-4 group text-left cursor-pointer focus:outline-none shrink-0 animate-logo-dance"
         >
-          <div className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-[#ec4899] to-[#be185d] p-0.5 shadow-xl shadow-pink-500/40 group-hover:scale-105 transition-all duration-300">
-            <div className="w-full h-full bg-[#1b0a33] rounded-[14px] flex items-center justify-center">
-              <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-white fill-[#ec4899]" />
+          {/* Animated Glowing Logo Icon Box with Radiance & Heartbeat */}
+          <div className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-[#ec4899] via-[#f43f5e] to-[#fb7185] p-0.5 shadow-xl animate-logo-icon-radiance group-hover:scale-110 transition-transform duration-300">
+            {/* Sparkle star badge on logo corner */}
+            <span className="absolute -top-1.5 -right-1.5 w-4 h-4 text-amber-300 pointer-events-none animate-sparkle-glow">
+              ✦
+            </span>
+            <div className="w-full h-full bg-[#1b0a33] rounded-[14px] flex items-center justify-center overflow-hidden relative">
+              <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-white fill-[#ec4899] animate-heartbeat drop-shadow-[0_0_10px_#ec4899]" />
+              {/* Subtle inner light reflection */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
             </div>
           </div>
 
           <div>
-            <span className="text-2xl sm:text-3xl font-black tracking-tight text-white block leading-tight">
+            <span className="text-2xl sm:text-3xl font-black tracking-tight text-white block leading-tight animate-logo-text-shimmer">
               LoveConnect
             </span>
-            <p className="text-xs sm:text-sm text-pink-200/80 font-medium tracking-wide">
-              Find your perfect match
+            <p className="text-xs sm:text-sm text-pink-200/90 font-medium tracking-wide flex items-center gap-1">
+              <span>Find your perfect match</span>
+              <span className="inline-block text-pink-400 animate-pulse text-[10px]">✨</span>
             </p>
           </div>
         </button>
@@ -138,15 +147,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             Login
           </button>
 
-          {/* Join Now Button */}
-          <button
+          {/* Join Now Button that shoots sparks ("bote chispas") */}
+          <SparkJoinButton
             id="nav-join-btn"
             onClick={onOpenJoin}
-            className="relative group overflow-hidden px-5 py-2.5 sm:px-6 sm:py-2.5 text-sm sm:text-base font-black text-white rounded-2xl bg-gradient-to-r from-[#ec4899] via-[#f43f5e] to-[#f97316] shadow-lg shadow-pink-500/40 hover:shadow-pink-500/60 hover:brightness-110 active:scale-[0.98] transition-all duration-300 flex items-center gap-2 cursor-pointer"
-          >
-            <Heart className="w-4 h-4 fill-white" />
-            <span>Join Now</span>
-          </button>
+            size="md"
+            text="Join Now"
+          />
         </div>
       </div>
     </header>

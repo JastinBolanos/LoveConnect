@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Users, ShieldCheck, Play, Send, Star } from 'lucide-react';
 import { SARAH_MATCH, JESSICA_TESTIMONIAL, USER_AVATAR, HERO_COUPLE_IMAGE } from '../data/membersData';
+import { SparkJoinButton } from './SparkJoinButton';
 
 interface HeroSectionProps {
   onJoinClick: () => void;
@@ -119,20 +120,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </div>
             </div>
 
-            {/* Action Buttons with Lively Animations */}
+            {/* Action Buttons with Lively Animations & Sparks */}
             <div className="flex flex-wrap items-center gap-5 pt-2">
-              <button
+              <SparkJoinButton
                 id="hero-join-cta"
                 onClick={onJoinClick}
-                className="relative group overflow-hidden px-7 py-3.5 sm:px-8 sm:py-4 rounded-2xl bg-gradient-to-r from-[#ec4899] via-[#f43f5e] to-[#f97316] font-extrabold text-white text-base sm:text-lg shadow-[0_0_25px_rgba(236,72,153,0.5)] hover:shadow-[0_0_35px_rgba(244,63,94,0.8)] hover:scale-105 active:scale-[0.98] transition-all duration-300 flex items-center gap-2.5 cursor-pointer"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <span>Join Now – It's Free!</span>
-                  <span className="inline-block animate-heartbeat">💖</span>
-                </span>
-                {/* Continuous moving light reflection across button */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
-              </button>
+                size="lg"
+                text="Join Now – It's Free!"
+              />
 
               <button
                 id="hero-watch-video-cta"

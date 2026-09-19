@@ -167,13 +167,25 @@ export default function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {/* Sarah Match Card */}
-              <div className="bg-[#180c35] border border-pink-500/30 rounded-3xl p-5 flex items-center gap-4 shadow-xl">
-                <img
-                  src={SARAH_MATCH.image}
-                  alt={SARAH_MATCH.name}
-                  className="w-20 h-20 rounded-2xl object-cover border-2 border-pink-500 shadow-md"
-                  referrerPolicy="no-referrer"
-                />
+              <div className="bg-[#180c35] border border-pink-500/40 rounded-3xl p-5 flex items-center gap-4 shadow-xl relative overflow-hidden group">
+                {/* Photo container with glowing rotating pink border and breathing photo */}
+                <div className="relative p-[2.5px] rounded-2xl overflow-hidden shrink-0 animate-pink-glow shadow-md">
+                  <div
+                    className="absolute -inset-[100%] w-[300%] h-[300%] -left-[100%] -top-[100%] animate-rotate-border pointer-events-none"
+                    style={{
+                      background: 'conic-gradient(from 0deg, #ec4899 0deg, #f43f5e 90deg, #ffffff 180deg, #f472b6 270deg, #ec4899 360deg)',
+                    }}
+                  />
+                  <div className="relative w-20 h-20 rounded-[13.5px] overflow-hidden bg-gray-900 z-10 flex items-center justify-center">
+                    <img
+                      src={SARAH_MATCH.image}
+                      alt={SARAH_MATCH.name}
+                      className="w-full h-full object-cover animate-photo-shrink-expand will-change-transform"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                </div>
+
                 <div className="flex-1">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-bold text-white">{SARAH_MATCH.name}, {SARAH_MATCH.age}</h3>
@@ -182,7 +194,7 @@ export default function App() {
                   <p className="text-xs text-pink-200/70 mb-3">{SARAH_MATCH.city} • Liked you today</p>
                   <button
                     onClick={() => handleOpenChat(SARAH_MATCH)}
-                    className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-xs font-bold text-white shadow-md shadow-pink-500/30 hover:scale-105 transition-transform flex items-center justify-center gap-1.5"
+                    className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-xs font-bold text-white shadow-md shadow-pink-500/30 hover:scale-105 transition-transform flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <MessageCircle className="w-3.5 h-3.5" />
                     <span>Open Chat</span>
@@ -193,14 +205,30 @@ export default function App() {
               {/* Liked Members */}
               {allMembers
                 .filter((m) => likedMemberIds.has(m.id) && m.id !== SARAH_MATCH.id)
-                .map((m) => (
-                  <div key={m.id} className="bg-[#180c35] border border-pink-500/30 rounded-3xl p-5 flex items-center gap-4 shadow-xl">
-                    <img
-                      src={m.image}
-                      alt={m.name}
-                      className="w-20 h-20 rounded-2xl object-cover border-2 border-pink-500 shadow-md"
-                      referrerPolicy="no-referrer"
-                    />
+                .map((m, idx) => (
+                  <div key={m.id} className="bg-[#180c35] border border-pink-500/40 rounded-3xl p-5 flex items-center gap-4 shadow-xl relative overflow-hidden group">
+                    {/* Photo with rotating pink border & breathing photo */}
+                    <div className="relative p-[2.5px] rounded-2xl overflow-hidden shrink-0 animate-pink-glow shadow-md">
+                      <div
+                        className="absolute -inset-[100%] w-[300%] h-[300%] -left-[100%] -top-[100%] animate-rotate-border pointer-events-none"
+                        style={{
+                          background: 'conic-gradient(from 0deg, #ec4899 0deg, #f43f5e 90deg, #ffffff 180deg, #f472b6 270deg, #ec4899 360deg)',
+                          animationDelay: `${idx * 0.3}s`,
+                        }}
+                      />
+                      <div className="relative w-20 h-20 rounded-[13.5px] overflow-hidden bg-gray-900 z-10 flex items-center justify-center">
+                        <img
+                          src={m.image}
+                          alt={m.name}
+                          className="w-full h-full object-cover animate-photo-shrink-expand will-change-transform"
+                          style={{
+                            animationDelay: `${idx * 0.4}s`,
+                          }}
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    </div>
+
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <h3 className="text-lg font-bold text-white">{m.name}, {m.age}</h3>
@@ -209,7 +237,7 @@ export default function App() {
                       <p className="text-xs text-pink-200/70 mb-3">{m.city} • Mutual Interest</p>
                       <button
                         onClick={() => handleOpenChat(m)}
-                        className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-xs font-bold text-white shadow-md shadow-pink-500/30 hover:scale-105 transition-transform flex items-center justify-center gap-1.5"
+                        className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-600 text-xs font-bold text-white shadow-md shadow-pink-500/30 hover:scale-105 transition-transform flex items-center justify-center gap-1.5 cursor-pointer"
                       >
                         <MessageCircle className="w-3.5 h-3.5" />
                         <span>Send Message</span>
