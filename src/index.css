@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #1a1a2e;
+    background-color: #0b071a;
+    overflow-x: hidden;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(8px) rotate(-1deg);
+  }
+}
+
+@keyframes cyber-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.18);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.15);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.2) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-heart-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.6)) drop-shadow(0 0 20px rgba(236, 72, 153, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(244, 63, 94, 0.9)) drop-shadow(0 0 35px rgba(236, 72, 153, 0.7));
+  }
+}
+
+@keyframes love-wave {
+  0%, 100% {
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dashoffset: 100;
+  }
+}
+
+@keyframes fall-down {
+  0% {
+    transform: translateY(-80px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(50vh) translateX(18px) rotate(15deg);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(75vh) translateX(-12px) rotate(-10deg);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(115vh) translateX(10px) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fall-sway {
+  0% {
+    transform: translateY(-60px) translateX(0) rotate(-15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(55vh) translateX(-24px) rotate(12deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateY(115vh) translateX(18px) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gentle-sway {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0.8deg);
+  }
+}
+
+@keyframes neon-glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 12px rgba(236, 72, 153, 0.7)) drop-shadow(0 0 25px rgba(236, 72, 153, 0.4));
+    transform: scale(1) rotate(-12deg);
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(236, 72, 153, 1)) drop-shadow(0 0 45px rgba(244, 63, 94, 0.8));
+    transform: scale(1.15) rotate(-8deg);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes ripple-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+.animate-fall-curtain {
+  animation: fall-down linear infinite;
+}
+
+.animate-fall-sway {
+  animation: fall-sway linear infinite;
+}
+
+.animate-gentle-sway {
+  animation: gentle-sway 4s ease-in-out infinite;
+}
+
+.animate-neon-pulse-rotate {
+  animation: neon-glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: ripple-ring 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float-gentle 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-reverse 6s ease-in-out 1s infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 200%;
+  animation: cyber-shimmer 6s ease infinite;
+}
+
+.animate-heartbeat {
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.animate-heartbeat-fast {
+  animation: heartbeat 1.1s ease-in-out infinite;
+}
+
+.animate-neon-heart {
+  animation: neon-heart-pulse 2.5s ease-in-out infinite;
+}
+
+/* Custom futuristic scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0a21;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ec4899, #8b5cf6);
+  border-radius: 4px;
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "LoveConnect - Futuristic Dating",
+  "description": "A vibrant, futuristic dating platform featuring cyber-romantic styling, instant smart matching, animated profiles, and interactive connection tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
