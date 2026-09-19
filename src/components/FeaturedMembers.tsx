@@ -8,6 +8,7 @@ interface FeaturedMembersProps {
   onLikeMember: (member: Member, e: React.MouseEvent) => void;
   likedMemberIds: Set<string>;
   onViewAllClick: () => void;
+  showAll?: boolean;
 }
 
 export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
@@ -15,12 +16,14 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
   onSelectMember,
   onLikeMember,
   likedMemberIds,
-  onViewAllClick
+  onViewAllClick,
+  showAll = false
 }) => {
   const [pulseSpeed, setPulseSpeed] = useState<'normal' | 'fast'>('normal');
+  const displayedMembers = showAll ? members : members.slice(0, 6);
 
   return (
-    <section className="w-full bg-white text-gray-900 pt-8 pb-4 sm:pt-10 sm:pb-6 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 rounded-t-[32px] sm:rounded-t-[44px] -mt-6 sm:-mt-8 relative z-20 shadow-2xl">
+    <section className="w-full bg-white text-gray-900 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pb-24 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 rounded-[32px] sm:rounded-[44px] border-2 border-pink-100/90 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] relative z-20 mb-8 sm:mb-12">
       <div className="w-full">
         
         {/* Section Header: Pink Star + Featured Members on left, Controls + View All Members on right */}
@@ -52,20 +55,22 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
             </button>
 
             {/* View All Members Button */}
-            <button
-              id="view-all-members-link"
-              onClick={onViewAllClick}
-              className="flex items-center gap-1.5 text-sm sm:text-base font-bold text-[#ec4899] hover:text-[#db2777] transition-colors group cursor-pointer"
-            >
-              <span>View All Members</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            {!showAll && (
+              <button
+                id="view-all-members-link"
+                onClick={onViewAllClick}
+                className="flex items-center gap-1.5 text-sm sm:text-base font-bold text-[#ec4899] hover:text-[#db2777] transition-colors group cursor-pointer"
+              >
+                <span>View All Members</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Member Cards Grid: 6 Columns with Glowing Rotating Pink Borders and Breathing Photos */}
+        {/* Member Cards Grid: with Glowing Rotating Pink Borders, Breathing Photos, and generous air below */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 xl:gap-6">
-          {members.slice(0, 6).map((member, index) => {
+          {displayedMembers.map((member, index) => {
             const isLiked = likedMemberIds.has(member.id);
 
             return (

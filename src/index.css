@@ -444,3 +444,88 @@
   border-radius: 4px;
 }
 
+/* Button Jump & Bounce Animations (Salten el botón) */
+@keyframes button-jump {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  14% {
+    transform: translateY(-11px) scale(1.06);
+    box-shadow: 0 16px 30px -4px rgba(236, 72, 153, 0.75), 0 0 26px rgba(251, 146, 60, 0.65);
+  }
+  26% {
+    transform: translateY(0) scale(0.95);
+  }
+  38% {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px -2px rgba(236, 72, 153, 0.6);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-button-jump {
+  animation: button-jump 2s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+  will-change: transform, box-shadow;
+}
+
+@keyframes button-hop-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  16% {
+    transform: translateY(-5px);
+  }
+  28% {
+    transform: translateY(0);
+  }
+}
+
+.animate-button-hop-soft {
+  animation: button-hop-soft 2.4s ease-in-out infinite;
+}
+
+/* Data Elements Glowing & Shimmering Animations (Los datos brillen) */
+@keyframes data-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(236, 72, 153, 0.35), inset 0 0 12px rgba(236, 72, 153, 0.1);
+    border-color: rgba(244, 114, 182, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(236, 72, 153, 0.75), 0 0 38px rgba(244, 63, 94, 0.45), inset 0 0 18px rgba(236, 72, 153, 0.25);
+    border-color: rgba(244, 114, 182, 0.95);
+  }
+}
+
+.animate-data-glow {
+  animation: data-glow-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes text-neon-shine {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(236, 72, 153, 0.6), 0 0 18px rgba(244, 63, 94, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(236, 72, 153, 0.95), 0 0 28px rgba(244, 63, 94, 0.7), 0 0 38px rgba(251, 146, 60, 0.55);
+  }
+}
+
+.animate-text-glow {
+  animation: text-neon-shine 2s ease-in-out infinite;
+}
+
+@keyframes shine-sweep-line {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  35%, 100% {
+    transform: translateX(280%) skewX(-25deg);
+  }
+}
+
+.animate-shine-sweep {
+  animation: shine-sweep-line 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+

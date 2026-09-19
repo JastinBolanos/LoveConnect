@@ -10,6 +10,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onSwitchToJoin 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,12 +91,21 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onSwitchToJoin 
               </label>
               <button
                 type="button"
-                onClick={() => alert("Password reset link sent to your registered email.")}
+                onClick={() => {
+                  setResetSent(true);
+                  setTimeout(() => setResetSent(false), 3500);
+                }}
                 className="hover:underline text-pink-400"
               >
                 Forgot password?
               </button>
             </div>
+
+            {resetSent && (
+              <div className="p-2.5 rounded-xl bg-pink-500/20 border border-pink-500/40 text-xs text-pink-200 text-center animate-in fade-in">
+                Password reset link sent to your email! ✉️
+              </div>
+            )}
 
             <button
               type="submit"

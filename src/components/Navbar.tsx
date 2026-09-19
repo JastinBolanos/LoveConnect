@@ -68,11 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 key={tab}
                 id={`nav-link-${tab.toLowerCase().replace(/\s+/g, '-')}`}
                 onClick={() => {
-                  if (tab === 'Messages') {
-                    onOpenChat();
-                  } else {
-                    setActiveTab(tab);
-                  }
+                  setActiveTab(tab);
                 }}
                 className={`relative px-3.5 py-2 lg:px-4 lg:py-2.5 text-base md:text-lg lg:text-xl font-bold sm:font-extrabold transition-all duration-200 cursor-pointer whitespace-nowrap ${
                   isActive

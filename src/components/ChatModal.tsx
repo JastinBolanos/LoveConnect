@@ -18,7 +18,13 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [callNotification, setCallNotification] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const startHologramCall = () => {
+    setCallNotification(`Starting encrypted holographic call with ${member.name}...`);
+    setTimeout(() => setCallNotification(null), 3500);
+  };
 
   const quickReplies = [
     `Hey ${member.name}! Having a great day now 😊`,
@@ -102,7 +108,7 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
 
           <div className="flex items-center gap-1">
             <button
-              onClick={() => alert(`Starting encrypted holographic call with ${member.name}...`)}
+              onClick={startHologramCall}
               className="p-2 text-pink-300 hover:text-white hover:bg-pink-500/20 rounded-full transition-colors cursor-pointer"
               title="Hologram Call"
             >
@@ -116,6 +122,13 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
             </button>
           </div>
         </div>
+
+        {callNotification && (
+          <div className="bg-pink-500/20 border-b border-pink-500/40 px-4 py-2 text-xs font-semibold text-pink-200 text-center flex items-center justify-center gap-2 animate-in fade-in">
+            <Video className="w-3.5 h-3.5 text-pink-400 animate-pulse" />
+            <span>{callNotification}</span>
+          </div>
+        )}
 
         {/* Message Thread */}
         <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#110624]/60">

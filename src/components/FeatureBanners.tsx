@@ -41,7 +41,7 @@ export const FeatureBanners: React.FC<FeatureBannersProps> = ({ onLearnMore }) =
   };
 
   return (
-    <section className="w-full bg-white pt-2 pb-12 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24">
+    <section className="w-full pb-14 sm:pb-20 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24">
       <div className="w-full">
         {/* Main Banner Container with Vibrant Futuristic Gradient (Exact match to Loveconnect.png) */}
         <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#9333ea] via-[#ec4899] to-[#f97316] p-6 sm:p-8 lg:p-9 shadow-xl text-white">

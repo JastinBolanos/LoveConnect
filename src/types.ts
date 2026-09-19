@@ -14,6 +14,7 @@ export interface Member {
   interests: string[];
   zodiac?: string;
   height?: string;
+  matchedTime?: string;
 }
 
 export interface Testimonial {
@@ -26,6 +27,8 @@ export interface Testimonial {
   rating: number;
   story: string;
   yearsTogether: string;
+  tag?: string;
+  dateMet?: string;
 }
 
 export interface ChatMessage {
