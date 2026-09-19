@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Heart, Sparkles, Send, Flame } from 'lucide-react';
+import { X, Heart, Sparkles, Send } from 'lucide-react';
 import { Member } from '../types';
 import { USER_AVATAR } from '../data/membersData';
 
@@ -12,13 +12,11 @@ interface MatchCelebrationModalProps {
 export const MatchCelebrationModal: React.FC<MatchCelebrationModalProps> = ({
   member,
   onClose,
-  onSendMessage
+  onSendMessage,
 }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in zoom-in-95 duration-200">
       <div className="relative w-full max-w-md bg-gradient-to-b from-[#210c43] to-[#120726] border-2 border-pink-500/60 rounded-3xl overflow-hidden shadow-2xl shadow-pink-500/50 p-6 text-center text-white">
-        
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
@@ -26,10 +24,8 @@ export const MatchCelebrationModal: React.FC<MatchCelebrationModalProps> = ({
           <X className="w-5 h-5" />
         </button>
 
-        {/* Ambient floating glows */}
         <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-48 h-48 bg-pink-500/30 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Header Title */}
         <div className="space-y-1 mb-6 relative z-10">
           <div className="inline-flex p-2 rounded-full bg-pink-500/20 text-pink-400 mb-1 animate-bounce">
             <Sparkles className="w-6 h-6" />
@@ -42,7 +38,6 @@ export const MatchCelebrationModal: React.FC<MatchCelebrationModalProps> = ({
           </p>
         </div>
 
-        {/* Colliding Glowing Avatars */}
         <div className="relative flex items-center justify-center py-4 mb-4">
           <div className="relative z-10 -mr-4 animate-float">
             <img
@@ -73,12 +68,10 @@ export const MatchCelebrationModal: React.FC<MatchCelebrationModalProps> = ({
           </div>
         </div>
 
-        {/* Bio Affinity Tag */}
         <div className="mb-6 px-4 py-2 rounded-2xl bg-white/5 border border-pink-500/30 text-xs text-pink-200">
           ✨ Strong resonance detected on: {member.interests.slice(0, 3).join(', ')}
         </div>
 
-        {/* Action Buttons */}
         <div className="space-y-2.5">
           <button
             id="match-send-message-btn"
@@ -96,7 +89,6 @@ export const MatchCelebrationModal: React.FC<MatchCelebrationModalProps> = ({
             Keep Exploring
           </button>
         </div>
-
       </div>
     </div>
   );

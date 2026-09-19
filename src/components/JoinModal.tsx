@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, Sparkles, Check, ArrowRight, User, Shield, Flame } from 'lucide-react';
+import { X, Heart, Sparkles, Check, ArrowRight } from 'lucide-react';
 import { FEATURED_MEMBERS } from '../data/membersData';
 import { Member } from '../types';
 
@@ -13,7 +13,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
   const [gender, setGender] = useState<'man' | 'woman' | 'non-binary'>('man');
   const [seeking, setSeeking] = useState<'women' | 'men' | 'everyone'>('women');
   const [vibe, setVibe] = useState('Neon Rooftops');
-  const [city, setCity] = useState('New York');
   const [isScanning, setIsScanning] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
 
@@ -21,7 +20,7 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
     '✨ Neon Rooftops & Cocktails',
     '☕ Cyber Cafe & Cozy Vinyl',
     '🌅 Sunset Stargazing & Picnics',
-    '🎨 Tech Art & Synthwave Concerts'
+    '🎨 Tech Art & Synthwave Concerts',
   ];
 
   const handleStartScan = () => {
@@ -47,8 +46,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-lg bg-[#160a2f] border border-pink-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-pink-900/60 p-6 text-white">
-        
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
@@ -56,7 +53,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
           <X className="w-5 h-5" />
         </button>
 
-        {/* Step Indicator */}
         <div className="flex items-center justify-center gap-2 mb-6">
           {[1, 2, 3, 4].map((s) => (
             <div
@@ -68,7 +64,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
           ))}
         </div>
 
-        {/* STEP 1 */}
         {step === 1 && (
           <div className="space-y-6">
             <div className="text-center space-y-1.5">
@@ -127,7 +122,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
           </div>
         )}
 
-        {/* STEP 2 */}
         {step === 2 && (
           <div className="space-y-6">
             <div className="text-center space-y-1.5">
@@ -158,7 +152,7 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
             <div className="flex gap-3">
               <button
                 onClick={() => setStep(1)}
-                className="py-3 px-5 rounded-full bg-white/10 text-xs font-bold text-gray-300 hover:bg-white/15"
+                className="py-3 px-5 rounded-full bg-white/10 text-xs font-bold text-gray-300 hover:bg-white/15 cursor-pointer"
               >
                 Back
               </button>
@@ -172,7 +166,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
           </div>
         )}
 
-        {/* STEP 3: SCANNING ANIMATION */}
         {step === 3 && (
           <div className="py-8 text-center space-y-6">
             <div className="relative w-24 h-24 mx-auto flex items-center justify-center">
@@ -182,7 +175,7 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
 
             <div className="space-y-2">
               <h4 className="text-xl font-black text-white">Synthesizing Bio-Matches...</h4>
-              <p className="text-xs text-pink-200">Scanning 2M+ active profiles matching "{vibe}"</p>
+              <p className="text-xs text-pink-200">Scanning active profiles matching "{vibe}"</p>
             </div>
 
             <div className="w-full max-w-xs mx-auto bg-white/10 h-2.5 rounded-full overflow-hidden">
@@ -195,7 +188,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
           </div>
         )}
 
-        {/* STEP 4: RESULT */}
         {step === 4 && (
           <div className="space-y-6 text-center">
             <div className="space-y-2">
@@ -208,7 +200,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
               </p>
             </div>
 
-            {/* Quick Preview Avatars */}
             <div className="flex justify-center -space-x-4 py-2">
               {FEATURED_MEMBERS.slice(0, 3).map((m) => (
                 <div key={m.id} className="relative group">
@@ -233,7 +224,6 @@ export const JoinModal: React.FC<JoinModalProps> = ({ onClose, onSuccess }) => {
             </button>
           </div>
         )}
-
       </div>
     </div>
   );

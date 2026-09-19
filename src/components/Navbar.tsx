@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart, Search, Globe, ChevronDown, Bell, Sparkles, MessageCircle } from 'lucide-react';
 import { SparkJoinButton } from './SparkJoinButton';
+import { TabType } from '../types';
 
 interface NavbarProps {
   onOpenJoin: () => void;
@@ -8,7 +9,7 @@ interface NavbarProps {
   onOpenChat: () => void;
   unreadCount: number;
   activeTab: string;
-  setActiveTab: (tab: string) => void;
+  setActiveTab: (tab: TabType) => void;
   onSearchClick: () => void;
 }
 
@@ -19,31 +20,28 @@ export const Navbar: React.FC<NavbarProps> = ({
   unreadCount,
   activeTab,
   setActiveTab,
-  onSearchClick
+  onSearchClick,
 }) => {
   const [lang, setLang] = useState('English');
   const [langMenuOpen, setLangMenuOpen] = useState(false);
 
   const languages = ['English', 'Español', 'Français', 'Deutsch', 'Português'];
+  const tabs: TabType[] = ['Home', 'Browse', 'Matches', 'Messages', 'Success Stories', 'Blog'];
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#120826]/95 backdrop-blur-lg border-b border-pink-500/20 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 py-4 sm:py-5 lg:py-6 transition-all duration-300 shadow-lg shadow-black/20">
       <div className="w-full flex items-center justify-between gap-4">
-        {/* Brand Logo with Lively Animation */}
-        <button 
+        <button
           id="nav-logo-btn"
           onClick={() => setActiveTab('Home')}
           className="flex items-center gap-3.5 sm:gap-4 group text-left cursor-pointer focus:outline-none shrink-0 animate-logo-dance"
         >
-          {/* Animated Glowing Logo Icon Box with Radiance & Heartbeat */}
           <div className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr from-[#ec4899] via-[#f43f5e] to-[#fb7185] p-0.5 shadow-xl animate-logo-icon-radiance group-hover:scale-110 transition-transform duration-300">
-            {/* Sparkle star badge on logo corner */}
             <span className="absolute -top-1.5 -right-1.5 w-4 h-4 text-amber-300 pointer-events-none animate-sparkle-glow">
               ✦
             </span>
             <div className="w-full h-full bg-[#1b0a33] rounded-[14px] flex items-center justify-center overflow-hidden relative">
               <Heart className="w-6 h-6 sm:w-7 sm:h-7 text-white fill-[#ec4899] animate-heartbeat drop-shadow-[0_0_10px_#ec4899]" />
-              {/* Subtle inner light reflection */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
             </div>
           </div>
@@ -59,17 +57,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </button>
 
-        {/* Navigation Links */}
         <nav className="hidden md:flex items-center space-x-1 lg:space-x-3 xl:space-x-5">
-          {['Home', 'Browse', 'Matches', 'Messages', 'Success Stories', 'Blog'].map((tab) => {
+          {tabs.map((tab) => {
             const isActive = activeTab === tab;
             return (
               <button
                 key={tab}
                 id={`nav-link-${tab.toLowerCase().replace(/\s+/g, '-')}`}
-                onClick={() => {
-                  setActiveTab(tab);
-                }}
+                onClick={() => setActiveTab(tab)}
                 className={`relative px-3.5 py-2 lg:px-4 lg:py-2.5 text-base md:text-lg lg:text-xl font-bold sm:font-extrabold transition-all duration-200 cursor-pointer whitespace-nowrap ${
                   isActive
                     ? 'text-white'
@@ -77,9 +72,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }`}
               >
                 <span>{tab}</span>
-                {tab === 'Messages' && (
+                {tab === 'Messages' && unreadCount > 0 && (
                   <span className="ml-2 inline-flex items-center justify-center w-6 h-6 text-xs sm:text-sm font-black text-white bg-[#ec4899] rounded-full shadow-md shadow-pink-500/40">
-                    3
+                    {unreadCount}
                   </span>
                 )}
                 {isActive && (
@@ -90,32 +85,40 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </nav>
 
-        {/* Right Utility Buttons */}
         <div className="flex items-center gap-2 sm:gap-3.5 lg:gap-4 shrink-0">
-          {/* Search Trigger */}
           <button
             id="nav-search-btn"
             onClick={onSearchClick}
             aria-label="Search singles"
             className="p-2.5 text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
           >
-            <Search className="w-5 h-5" />
+            <Search className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
 
-          {/* Language Selector */}
-          <div className="relative hidden sm:block">
+          <button
+            id="nav-quick-chat-btn"
+            onClick={onOpenChat}
+            aria-label="Quick Chat"
+            className="relative p-2.5 text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+          >
+            <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+            {unreadCount > 0 && (
+              <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-pink-500 rounded-full ring-2 ring-[#120826] animate-ping" />
+            )}
+          </button>
+
+          <div className="relative hidden xl:block">
             <button
-              id="nav-lang-btn"
               onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="flex items-center gap-2 px-3 py-2 text-xs sm:text-sm font-semibold text-gray-200 hover:text-white hover:bg-white/10 rounded-xl transition-all cursor-pointer"
+              className="flex items-center gap-1.5 text-xs font-semibold text-gray-300 hover:text-white py-2 px-3 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
             >
-              <Globe className="w-4 h-4 text-gray-300" />
+              <Globe className="w-3.5 h-3.5 text-pink-400" />
               <span>{lang}</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${langMenuOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown className="w-3 h-3 text-gray-400" />
             </button>
 
             {langMenuOpen && (
-              <div className="absolute right-0 mt-2 w-36 bg-[#1b0e38] border border-pink-500/30 rounded-2xl shadow-xl shadow-purple-950/60 py-1.5 z-50 overflow-hidden backdrop-blur-xl">
+              <div className="absolute right-0 mt-2 w-32 bg-[#1b0c38] border border-pink-500/30 rounded-2xl shadow-xl py-2 z-50 animate-in fade-in zoom-in-95">
                 {languages.map((l) => (
                   <button
                     key={l}
@@ -123,8 +126,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                       setLang(l);
                       setLangMenuOpen(false);
                     }}
-                    className={`w-full text-left px-3.5 py-2 text-xs sm:text-sm transition-colors cursor-pointer ${
-                      lang === l ? 'bg-pink-600/30 text-pink-300 font-bold' : 'text-gray-200 hover:bg-white/10'
+                    className={`w-full text-left px-4 py-1.5 text-xs font-medium hover:bg-pink-600/30 transition-colors ${
+                      lang === l ? 'text-pink-400 font-bold' : 'text-gray-300'
                     }`}
                   >
                     {l}
@@ -134,21 +137,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* Login Button */}
           <button
             id="nav-login-btn"
             onClick={onOpenLogin}
-            className="px-5 py-2.5 sm:px-6 sm:py-2.5 text-sm sm:text-base font-bold text-white bg-purple-900/30 hover:bg-purple-900/50 border border-purple-500/40 rounded-2xl transition-all cursor-pointer shadow-sm hover:border-pink-500/50"
+            className="text-xs sm:text-sm lg:text-base font-bold text-white hover:text-pink-300 px-3 py-2 rounded-xl hover:bg-white/5 transition-colors cursor-pointer whitespace-nowrap"
           >
-            Login
+            Log in
           </button>
 
-          {/* Join Now Button that shoots sparks ("bote chispas") */}
           <SparkJoinButton
-            id="nav-join-btn"
+            id="nav-join-free-btn"
             onClick={onOpenJoin}
-            size="md"
-            text="Join Now"
+            size="sm"
+            text="Join Free"
           />
         </div>
       </div>

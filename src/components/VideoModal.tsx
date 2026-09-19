@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Play, Pause, Sparkles, Volume2, VolumeX, Shield, Heart, Radio } from 'lucide-react';
+import { X, Play, Pause, Volume2, VolumeX, Radio } from 'lucide-react';
 
 interface VideoModalProps {
   onClose: () => void;
@@ -14,8 +14,6 @@ export const VideoModal: React.FC<VideoModalProps> = ({ onClose, onJoinNow }) =>
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-2xl bg-[#14082c] border border-pink-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-pink-900/60 flex flex-col text-white">
-        
-        {/* Top bar */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-[#1f0d3e] border-b border-pink-500/20">
           <div className="flex items-center gap-2">
             <Radio className="w-4 h-4 text-pink-400 animate-pulse" />
@@ -31,15 +29,11 @@ export const VideoModal: React.FC<VideoModalProps> = ({ onClose, onJoinNow }) =>
           </button>
         </div>
 
-        {/* Video Simulation Canvas */}
         <div className="relative w-full aspect-video bg-gradient-to-tr from-purple-950 via-[#1a0833] to-pink-950 flex items-center justify-center overflow-hidden">
-          
-          {/* Animated Background Graphic */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-72 h-72 rounded-full border border-pink-500/30 animate-ping opacity-25" />
             <div className="w-96 h-96 rounded-full border border-purple-500/20 animate-pulse opacity-40" />
-            
-            {/* Couple silhouette / romantic glow */}
+
             <img
               src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1000&q=80"
               alt="Holographic dating simulation"
@@ -50,7 +44,6 @@ export const VideoModal: React.FC<VideoModalProps> = ({ onClose, onJoinNow }) =>
             />
           </div>
 
-          {/* Futuristic HUD overlay */}
           <div className="absolute top-4 left-4 flex flex-col gap-1 text-[11px] font-mono text-pink-300 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-xl border border-pink-500/30">
             <div className="flex items-center gap-1.5 text-emerald-400 font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -60,7 +53,6 @@ export const VideoModal: React.FC<VideoModalProps> = ({ onClose, onJoinNow }) =>
             <span>Latency: 12ms | Latent Space: OK</span>
           </div>
 
-          {/* Center Play/Pause Trigger */}
           <button
             onClick={() => setIsPlaying(!isPlaying)}
             className="z-20 w-16 h-16 rounded-full bg-gradient-to-tr from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-2xl shadow-pink-500/50 hover:scale-110 active:scale-95 transition-transform cursor-pointer"
@@ -68,7 +60,6 @@ export const VideoModal: React.FC<VideoModalProps> = ({ onClose, onJoinNow }) =>
             {isPlaying ? <Pause className="w-6 h-6 fill-white" /> : <Play className="w-6 h-6 fill-white translate-x-0.5" />}
           </button>
 
-          {/* Controls Bar */}
           <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl text-xs border border-white/10 z-20">
             <div className="flex items-center gap-3">
               <span className="text-pink-300 font-mono">01:42 / 02:30</span>
@@ -79,14 +70,13 @@ export const VideoModal: React.FC<VideoModalProps> = ({ onClose, onJoinNow }) =>
 
             <button
               onClick={() => setIsMuted(!isMuted)}
-              className="p-1.5 text-gray-300 hover:text-white"
+              className="p-1.5 text-gray-300 hover:text-white cursor-pointer"
             >
               {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
             </button>
           </div>
         </div>
 
-        {/* Feature Explainer Tabs Below Video */}
         <div className="p-5 space-y-4">
           <div className="flex items-center gap-2 border-b border-white/10 pb-3">
             <button
@@ -140,7 +130,6 @@ export const VideoModal: React.FC<VideoModalProps> = ({ onClose, onJoinNow }) =>
             </button>
           </div>
         </div>
-
       </div>
     </div>
   );

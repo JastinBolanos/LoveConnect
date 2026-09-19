@@ -1,6 +1,7 @@
 import React from 'react';
-import { MessageCircle, Heart, Search, Sparkles, CheckCheck } from 'lucide-react';
+import { MessageCircle, Heart, Sparkles, CheckCheck } from 'lucide-react';
 import { Member } from '../types';
+import { chatService } from '../services/chatService';
 
 interface MessagesViewProps {
   members: Member[];
@@ -13,52 +14,20 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
   members,
   onOpenChat,
   onBackToHome,
-  onExploreSingles
+  onExploreSingles,
 }) => {
-  // Let's create realistic mock conversations for the matches
-  const conversationPreviews = [
-    {
-      memberId: 'sarah-26',
-      lastMessage: 'Hey! Loved your bio about stargazing & synthwave ✨ When are you free?',
-      time: '10:42 AM',
-      unread: true,
-    },
-    {
-      memberId: 'elena-25',
-      lastMessage: 'Totally agree on sunset photography! Have you visited the south beach piers?',
-      time: 'Yesterday',
-      unread: true,
-    },
-    {
-      memberId: 'camila-24',
-      lastMessage: 'That holographic lighting concept sounds unreal! Would love to chat more.',
-      time: 'Yesterday',
-      unread: true,
-    },
-    {
-      memberId: 'chloe-27',
-      lastMessage: 'Did you hear the new synth album that dropped last week?',
-      time: 'Tuesday',
-      unread: false,
-    },
-    {
-      memberId: 'valeria-26',
-      lastMessage: 'Ocean sunsets never get old 🌅',
-      time: 'Sep 15',
-      unread: false,
-    },
-  ];
+  const conversationPreviews = chatService.getConversationPreviews();
+  const unreadCount = conversationPreviews.filter((c) => c.unread).length;
 
   return (
     <div className="w-full px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 py-8 sm:py-12">
-      {/* Header */}
       <div className="flex items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-3xl sm:text-4xl font-black text-white flex items-center gap-3">
             <MessageCircle className="w-8 h-8 text-pink-400 fill-pink-500/30" />
             <span>Tus Conversaciones</span>
             <span className="text-xs font-bold px-3 py-1 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300">
-              3 Nuevos Mensajes
+              {unreadCount} Nuevos Mensajes
             </span>
           </h1>
           <p className="text-sm text-pink-200/80 mt-1">
@@ -74,9 +43,7 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
         </button>
       </div>
 
-      {/* Messages Inbox Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left: Conversations list */}
         <div className="lg:col-span-2 space-y-3">
           {conversationPreviews.map((conv) => {
             const member = members.find((m) => m.id === conv.memberId) || members[0];
@@ -91,7 +58,6 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
                     : 'bg-[#14082c] border-pink-500/20 hover:border-pink-500/40'
                 }`}
               >
-                {/* Avatar with Status */}
                 <div className="relative shrink-0">
                   <img
                     src={member.image}
@@ -104,7 +70,6 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
                   )}
                 </div>
 
-                {/* Content preview */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-1">
                     <div className="flex items-center gap-2">
@@ -118,12 +83,15 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
                     <span className="text-xs text-pink-300/70">{conv.time}</span>
                   </div>
 
-                  <p className={`text-xs sm:text-sm truncate ${conv.unread ? 'text-pink-100 font-semibold' : 'text-gray-400'}`}>
+                  <p
+                    className={`text-xs sm:text-sm truncate ${
+                      conv.unread ? 'text-pink-100 font-semibold' : 'text-gray-400'
+                    }`}
+                  >
                     {conv.lastMessage}
                   </p>
                 </div>
 
-                {/* Action / Unread marker */}
                 <div className="shrink-0 flex items-center gap-2">
                   {conv.unread ? (
                     <span className="w-3 h-3 rounded-full bg-pink-500 animate-pulse" />
@@ -145,7 +113,6 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
           })}
         </div>
 
-        {/* Right: Quick actions & Icebreakers */}
         <div className="space-y-6">
           <div className="bg-[#180b33] border border-pink-500/30 rounded-3xl p-6 shadow-xl">
             <div className="flex items-center gap-2 text-pink-400 font-extrabold text-sm mb-3">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { X, Search, MapPin, Sparkles, Heart } from 'lucide-react';
+import { X, Search, MapPin } from 'lucide-react';
 import { Member } from '../types';
+import { memberService } from '../services/memberService';
 
 interface SearchModalProps {
   members: Member[];
@@ -11,21 +12,11 @@ interface SearchModalProps {
 export const SearchModal: React.FC<SearchModalProps> = ({ members, onSelectMember, onClose }) => {
   const [query, setQuery] = useState('');
 
-  const results = members.filter((m) => {
-    const q = query.toLowerCase();
-    return (
-      m.name.toLowerCase().includes(q) ||
-      m.city.toLowerCase().includes(q) ||
-      m.profession.toLowerCase().includes(q) ||
-      m.interests.some((i) => i.toLowerCase().includes(q))
-    );
-  });
+  const results = memberService.searchMembers(members, query);
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-16 sm:pt-20 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-xl bg-[#160a2f] border border-pink-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-pink-900/60 p-5 text-white">
-        
-        {/* Header & Search Input */}
         <div className="flex items-center justify-between pb-3 mb-3 border-b border-pink-500/20">
           <div className="flex items-center gap-2 flex-1 mr-3">
             <Search className="w-5 h-5 text-pink-400" />
@@ -40,13 +31,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({ members, onSelectMembe
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-gray-400 hover:text-white rounded-full hover:bg-white/10"
+            className="p-1.5 text-gray-400 hover:text-white rounded-full hover:bg-white/10 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Results List */}
         <div className="max-h-80 overflow-y-auto space-y-2 pr-1">
           {results.length === 0 ? (
             <div className="text-center py-8 text-gray-400 text-sm">
@@ -92,7 +82,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({ members, onSelectMembe
             ))
           )}
         </div>
-
       </div>
     </div>
   );

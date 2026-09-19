@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, Lock, Mail, ArrowRight } from 'lucide-react';
+import { X, Heart, Lock, Mail } from 'lucide-react';
 
 interface LoginModalProps {
   onClose: () => void;
@@ -23,8 +23,6 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onSwitchToJoin 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-md bg-[#160a2f] border border-pink-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-pink-900/60 p-6 text-white">
-        
-        {/* Close button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
@@ -95,7 +93,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onSwitchToJoin 
                   setResetSent(true);
                   setTimeout(() => setResetSent(false), 3500);
                 }}
-                className="hover:underline text-pink-400"
+                className="hover:underline text-pink-400 cursor-pointer"
               >
                 Forgot password?
               </button>
@@ -119,14 +117,13 @@ export const LoginModal: React.FC<LoginModalProps> = ({ onClose, onSwitchToJoin 
               <button
                 type="button"
                 onClick={onSwitchToJoin}
-                className="text-pink-400 font-bold hover:underline"
+                className="text-pink-400 font-bold hover:underline cursor-pointer"
               >
                 Join Now Free
               </button>
             </div>
           </form>
         )}
-
       </div>
     </div>
   );

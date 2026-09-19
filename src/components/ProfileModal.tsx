@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Heart, MessageCircle, MapPin, Briefcase, Sparkles, CheckCircle2, Star, Flame, Shield, Share2 } from 'lucide-react';
+import { X, Heart, MessageCircle, MapPin, Sparkles, Flame, Shield, Share2 } from 'lucide-react';
 import { Member } from '../types';
 
 interface ProfileModalProps {
@@ -15,7 +15,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
   isLiked,
   onToggleLike,
   onStartChat,
-  onClose
+  onClose,
 }) => {
   const [roseSent, setRoseSent] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
@@ -36,8 +36,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-xl bg-[#14082b] border-2 border-pink-500/50 rounded-[32px] overflow-hidden shadow-2xl shadow-pink-900/60 max-h-[90vh] flex flex-col text-white">
-        
-        {/* Close & Share buttons */}
         <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
           {linkCopied && (
             <span className="text-xs bg-pink-500 text-white font-bold px-2.5 py-1 rounded-full shadow-lg animate-in fade-in">
@@ -59,10 +57,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
           </button>
         </div>
 
-        {/* Scrollable Content */}
         <div className="overflow-y-auto flex-1 pb-8">
-          
-          {/* Hero Image */}
           <div className="relative w-full h-80 sm:h-96 bg-gray-900">
             <img
               src={member.image}
@@ -72,7 +67,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#14082b] via-[#14082b]/30 to-transparent pointer-events-none" />
 
-            {/* Online and Match Tag */}
             <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
@@ -96,7 +90,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
                 </p>
               </div>
 
-              {/* Match Score Orb - Glowing & Shimmering */}
               <div className="flex flex-col items-center bg-gradient-to-tr from-pink-600 via-rose-600 to-purple-600 rounded-2xl p-3 shadow-xl border border-pink-300/60 animate-pink-glow relative overflow-hidden group">
                 <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shine-sweep" />
@@ -107,10 +100,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             </div>
           </div>
 
-          {/* Details Section */}
           <div className="px-5 sm:px-6 pt-3 space-y-6">
-            
-            {/* Bio */}
             <div>
               <h3 className="text-xs font-bold text-pink-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-pink-400 animate-sparkle-glow" />
@@ -126,9 +116,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               </div>
             </div>
 
-            {/* Quick Stats Grid - Data Shining & Glowing (Los datos brillen) */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {/* Profession Card */}
               <div className="relative overflow-hidden bg-gradient-to-b from-white/10 to-pink-950/30 p-3.5 rounded-2xl border border-pink-500/40 animate-data-glow group">
                 <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
                   <div className="w-2/3 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shine-sweep" />
@@ -142,7 +130,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
                 </div>
               </div>
 
-              {/* Zodiac Card */}
               {member.zodiac && (
                 <div className="relative overflow-hidden bg-gradient-to-b from-white/10 to-purple-950/30 p-3.5 rounded-2xl border border-pink-500/40 animate-data-glow group">
                   <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
@@ -158,7 +145,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
                 </div>
               )}
 
-              {/* Height Card */}
               {member.height && (
                 <div className="relative overflow-hidden bg-gradient-to-b from-white/10 to-rose-950/30 p-3.5 rounded-2xl border border-pink-500/40 animate-data-glow group">
                   <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
@@ -175,7 +161,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               )}
             </div>
 
-            {/* Interests Chips */}
             <div>
               <h3 className="text-xs font-bold text-pink-400 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
                 <span>Passions & Aesthetics</span>
@@ -193,7 +178,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               </div>
             </div>
 
-            {/* Compatibility Breakdown Bars - Shining Data */}
             <div className="relative overflow-hidden bg-gradient-to-r from-pink-950/50 via-[#230d3d]/60 to-purple-950/50 p-4 rounded-2xl border border-pink-500/40 shadow-[0_0_20px_rgba(236,72,153,0.25)] space-y-3">
               <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden">
                 <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-pink-400/15 to-transparent animate-shine-sweep" />
@@ -220,18 +204,14 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
               </div>
             </div>
 
-            {/* Cyber Rose Alert */}
             {roseSent && (
               <div className="p-3 bg-pink-500/25 border border-pink-400 rounded-2xl text-center text-pink-100 font-extrabold text-sm animate-bounce shadow-[0_0_20px_rgba(236,72,153,0.5)]">
                 🌹 Holographic Cyber Rose delivered to {member.name}! She was notified.
               </div>
             )}
-
           </div>
-
         </div>
 
-        {/* Footer Action Bar - Jumping Buttons (Salten el botón) */}
         <div className="p-4 bg-[#1b0a36] border-t border-pink-500/30 flex items-center gap-3">
           <button
             onClick={onToggleLike}
@@ -254,7 +234,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             <span className="hidden sm:inline">Send Rose</span>
           </button>
 
-          {/* Primary Jumping Button (Salte el botón) */}
           <button
             onClick={onStartChat}
             className="flex-1 py-3.5 px-4 rounded-2xl font-black text-sm bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:from-pink-600 hover:to-amber-600 text-white shadow-xl shadow-pink-500/60 flex items-center justify-center gap-2 transition-all cursor-pointer animate-button-jump relative overflow-hidden active:scale-95"
@@ -266,7 +245,6 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             <span className="tracking-wide text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">Chat Now</span>
           </button>
         </div>
-
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart, ShieldCheck, MessageCircle, Gift, Sparkles, ChevronRight, X, Check } from 'lucide-react';
+import { Heart, ShieldCheck, MessageCircle, Gift, Sparkles, X, Check } from 'lucide-react';
 import { BOTTOM_FEATURES } from '../data/membersData';
 import { FeatureItem } from '../types';
 
@@ -40,24 +40,27 @@ export const FeatureBanners: React.FC<FeatureBannersProps> = ({ onLearnMore }) =
     }
   };
 
+  const handleSelect = (feat: FeatureItem) => {
+    setSelectedFeature(feat);
+    if (onLearnMore) {
+      onLearnMore(feat);
+    }
+  };
+
   return (
     <section className="w-full pb-14 sm:pb-20 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24">
       <div className="w-full">
-        {/* Main Banner Container with Vibrant Futuristic Gradient (Exact match to Loveconnect.png) */}
         <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-r from-[#9333ea] via-[#ec4899] to-[#f97316] p-6 sm:p-8 lg:p-9 shadow-xl text-white">
-          
-          {/* 4 Feature Columns */}
           <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 lg:divide-x divide-white/20">
             {BOTTOM_FEATURES.map((feat, idx) => (
               <div
                 key={feat.id}
                 id={`feature-box-${feat.id}`}
-                onClick={() => setSelectedFeature(feat)}
+                onClick={() => handleSelect(feat)}
                 className={`flex items-start gap-4 pt-4 sm:pt-0 ${
                   idx > 0 ? 'lg:pl-6 xl:pl-8' : ''
                 } group cursor-pointer hover:translate-y-[-2px] transition-transform`}
               >
-                {/* Circular Icon Bubble */}
                 <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 shadow-md ${getBubbleStyle(
                     idx
@@ -66,7 +69,6 @@ export const FeatureBanners: React.FC<FeatureBannersProps> = ({ onLearnMore }) =
                   {getIcon(feat.iconName)}
                 </div>
 
-                {/* Text Content */}
                 <div className="text-left text-white space-y-0.5">
                   <h3 className="text-base font-bold tracking-tight text-white group-hover:text-amber-200 transition-colors flex items-center gap-1">
                     <span>{feat.title}</span>
@@ -81,7 +83,6 @@ export const FeatureBanners: React.FC<FeatureBannersProps> = ({ onLearnMore }) =
         </div>
       </div>
 
-      {/* Feature Details Modal */}
       {selectedFeature && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
           <div className="relative w-full max-w-md bg-[#180d33] border border-pink-500/40 rounded-3xl p-6 text-white shadow-2xl shadow-purple-900/60">
@@ -123,7 +124,7 @@ export const FeatureBanners: React.FC<FeatureBannersProps> = ({ onLearnMore }) =
 
             <button
               onClick={() => setSelectedFeature(null)}
-              className="w-full py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-sm shadow-lg shadow-pink-500/30 hover:opacity-95"
+              className="w-full py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-sm shadow-lg shadow-pink-500/30 hover:opacity-95 cursor-pointer"
             >
               Got it, let's explore!
             </button>

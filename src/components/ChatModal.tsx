@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Heart, Sparkles, Phone, Video, MoreVertical, CheckCheck } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { X, Send, Sparkles, Video, CheckCheck } from 'lucide-react';
 import { Member, ChatMessage } from '../types';
+import { chatService } from '../services/chatService';
 
 interface ChatModalProps {
   member: Member;
@@ -10,58 +11,52 @@ interface ChatModalProps {
 export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-      id: 'msg-1',
+      id: 'welcome-1',
       sender: 'match',
-      text: `Hey there! ✨ I saw on your profile that you love cyberpunk aesthetics and music too! How is your day going?`,
-      timestamp: '2:14 PM'
-    }
+      text: `Hey! I saw your profile and loved your energy ✨ How is your week going?`,
+      timestamp: '10:14 AM',
+    },
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [callNotification, setCallNotification] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const startHologramCall = () => {
-    setCallNotification(`Starting encrypted holographic call with ${member.name}...`);
-    setTimeout(() => setCallNotification(null), 3500);
-  };
-
-  const quickReplies = [
-    `Hey ${member.name}! Having a great day now 😊`,
-    `Love your profile vibe! What synth track are you playing? 🎧`,
-    `Would love to get coffee or matcha this week! ☕`
-  ];
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const quickReplies = chatService.getQuickReplies(member.name);
 
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping]);
 
+  const startHologramCall = () => {
+    setCallNotification(`Calling ${member.name} via Hologram Video...`);
+    setTimeout(() => {
+      setCallNotification(`${member.name} is in a session. Sent ping notification!`);
+      setTimeout(() => setCallNotification(null), 3000);
+    }, 2000);
+  };
+
   const handleSendMessage = (textToSend?: string) => {
-    const text = textToSend || inputValue.trim();
-    if (!text) return;
+    const text = textToSend || inputValue;
+    if (!text.trim()) return;
 
     const userMsg: ChatMessage = {
-      id: `usr-${Date.now()}`,
+      id: `user-${Date.now()}`,
       sender: 'user',
-      text,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      text: text.trim(),
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
 
     setMessages((prev) => [...prev, userMsg]);
     setInputValue('');
 
-    // Simulate match reply
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
       const replies = [
         `Haha that's amazing! Absolutely agree with you! What's your favorite spot in town? 💕`,
         `I knew we'd click! That's so cool. I was just checking out a new gallery downtown! 🎨`,
-        `You seem really sweet! We should definitely plan that video date soon! ✨`
+        `You seem really sweet! We should definitely plan that video date soon! ✨`,
       ];
       const randomReply = replies[Math.floor(Math.random() * replies.length)];
       setMessages((prev) => [
@@ -70,8 +65,8 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
           id: `match-${Date.now()}`,
           sender: 'match',
           text: randomReply,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        }
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        },
       ]);
     }, 1800);
   };
@@ -79,8 +74,6 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-lg bg-[#150a2b] border border-pink-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-pink-900/60 flex flex-col h-[560px] text-white">
-        
-        {/* Chat Header */}
         <div className="flex items-center justify-between px-5 py-3.5 bg-gradient-to-r from-[#200d3d] to-[#160a2c] border-b border-pink-500/20">
           <div className="flex items-center gap-3">
             <div className="relative">
@@ -130,12 +123,10 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
           </div>
         )}
 
-        {/* Message Thread */}
         <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#110624]/60">
-          {/* Compatibility Pill */}
           <div className="flex justify-center">
             <span className="px-3 py-1 rounded-full bg-pink-900/40 border border-pink-500/30 text-[11px] text-pink-300 flex items-center gap-1.5 font-medium shadow-sm">
-              <Sparkles className="w-3 h-3 text-pink-400" />
+              <Sparkles className="w-3.5 h-3.5 text-pink-400" />
               Connected via Neural Affinity Match ({member.matchScore}%)
             </span>
           </div>
@@ -176,7 +167,6 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Quick Replies */}
         <div className="px-4 py-2 bg-[#170a2f] border-t border-pink-500/20 flex gap-2 overflow-x-auto no-scrollbar">
           {quickReplies.map((reply, i) => (
             <button
@@ -189,7 +179,6 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
           ))}
         </div>
 
-        {/* Chat Input Field */}
         <div className="p-3 bg-[#1d0d39] border-t border-pink-500/30 flex items-center gap-2">
           <input
             type="text"
@@ -207,7 +196,6 @@ export const ChatModal: React.FC<ChatModalProps> = ({ member, onClose }) => {
             <Send className="w-4 h-4" />
           </button>
         </div>
-
       </div>
     </div>
   );

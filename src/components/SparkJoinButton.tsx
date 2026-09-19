@@ -26,13 +26,12 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
   className = '',
   size = 'md',
   id = 'nav-join-btn',
-  text = 'Join Now'
+  text = 'Join Now',
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [burstSparks, setBurstSparks] = useState<DynamicSpark[]>([]);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-  // Trigger interactive spark explosion on click
   const triggerSparkBurst = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = buttonRef.current?.getBoundingClientRect();
     const originX = e.clientX - (rect?.left || 0);
@@ -61,7 +60,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
     onClick();
   };
 
-  // Clean up burst sparks after animation
   useEffect(() => {
     if (burstSparks.length === 0) return;
     const timer = setTimeout(() => {
@@ -82,10 +80,7 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* 1. Continuous Floating Electric Sparks (Emanating from all directions) */}
       <div className="absolute inset-0 pointer-events-none overflow-visible z-20">
-        
-        {/* Spark 1: Top-Left Shooting Upwards */}
         <span
           className="absolute -top-3 left-3 w-3 h-3 text-[#facc15] pointer-events-none drop-shadow-[0_0_8px_#facc15]"
           style={{
@@ -96,7 +91,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
           ✦
         </span>
 
-        {/* Spark 2: Top-Right Shooting Outwards */}
         <span
           className="absolute -top-3 right-4 w-3.5 h-3.5 text-[#fb923c] pointer-events-none drop-shadow-[0_0_10px_#f43f5e]"
           style={{
@@ -107,7 +101,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
           ✦
         </span>
 
-        {/* Spark 3: Bottom-Left Shooting */}
         <span
           className="absolute -bottom-2 left-6 w-2.5 h-2.5 text-[#ec4899] pointer-events-none drop-shadow-[0_0_8px_#ec4899]"
           style={{
@@ -118,7 +111,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
           ✧
         </span>
 
-        {/* Spark 4: Bottom-Right Shooting */}
         <span
           className="absolute -bottom-2 right-5 w-3 h-3 text-[#fef08a] pointer-events-none drop-shadow-[0_0_10px_#eab308]"
           style={{
@@ -129,7 +121,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
           ✦
         </span>
 
-        {/* Spark 5: Top Center Ember */}
         <span
           className="absolute -top-4 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-amber-300 pointer-events-none shadow-[0_0_10px_#f59e0b]"
           style={{
@@ -140,7 +131,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
           }}
         />
 
-        {/* Spark 6: Left Side Hot Ember */}
         <span
           className="absolute top-1/2 -left-3 -translate-y-1/2 w-2 h-2 rounded-full bg-pink-400 pointer-events-none shadow-[0_0_12px_#ec4899]"
           style={{
@@ -151,7 +141,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
           }}
         />
 
-        {/* Spark 7: Right Side Golden Star */}
         <span
           className="absolute top-1/2 -right-3 -translate-y-1/2 w-3 h-3 text-white pointer-events-none drop-shadow-[0_0_8px_#ffffff]"
           style={{
@@ -164,7 +153,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
           ★
         </span>
 
-        {/* Extra intense sparks when hovered */}
         {isHovered && (
           <>
             <span
@@ -189,7 +177,6 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
         )}
       </div>
 
-      {/* 2. Burst Sparks Container (Fired on click) */}
       <div className="absolute inset-0 pointer-events-none z-30 overflow-visible">
         {burstSparks.map((spark) => (
           <span
@@ -209,22 +196,16 @@ export const SparkJoinButton: React.FC<SparkJoinButtonProps> = ({
         ))}
       </div>
 
-      {/* 3. Glowing Radiant Aura behind button */}
       <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 opacity-70 blur-md group-hover:opacity-100 transition-opacity duration-300 animate-pulse-slow pointer-events-none" />
 
-      {/* 4. The Actual Button */}
       <button
         ref={buttonRef}
         id={id}
         onClick={triggerSparkBurst}
         className={`relative group overflow-hidden rounded-2xl bg-gradient-to-r from-[#ec4899] via-[#f43f5e] to-[#f97316] text-white shadow-lg shadow-pink-500/40 hover:shadow-[0_0_30px_rgba(244,63,94,0.8)] hover:brightness-110 active:scale-[0.96] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer z-10 ${sizeClasses} ${className}`}
       >
-        {/* Shimmer sweep effect inside */}
         <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none" />
-
-        {/* Heart icon with heartbeat pulse */}
         <Heart className="w-4 h-4 fill-white text-white animate-heartbeat shrink-0 drop-shadow" />
-
         <span className="relative z-10 tracking-tight flex items-center gap-1.5">
           <span>{text}</span>
           <Sparkles className="w-3.5 h-3.5 text-yellow-200 fill-yellow-200 animate-spark-flicker shrink-0" />

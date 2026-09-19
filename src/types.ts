@@ -1,3 +1,5 @@
+export type TabType = 'Home' | 'Browse' | 'Matches' | 'Messages' | 'Success Stories' | 'Blog';
+
 export interface Member {
   id: string;
   name: string;
@@ -43,4 +45,18 @@ export interface FeatureItem {
   title: string;
   description: string;
   iconName: 'heart' | 'shield' | 'message' | 'gift';
+}
+
+export interface ConversationPreview {
+  memberId: string;
+  lastMessage: string;
+  time: string;
+  unread: boolean;
+}
+
+export interface BlogPost {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
 }

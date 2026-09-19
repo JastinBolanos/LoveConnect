@@ -17,7 +17,7 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
   onLikeMember,
   likedMemberIds,
   onViewAllClick,
-  showAll = false
+  showAll = false,
 }) => {
   const [pulseSpeed, setPulseSpeed] = useState<'normal' | 'fast'>('normal');
   const displayedMembers = showAll ? members : members.slice(0, 6);
@@ -25,8 +25,6 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
   return (
     <section className="w-full bg-white text-gray-900 pt-8 pb-16 sm:pt-10 sm:pb-20 lg:pb-24 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 2xl:px-24 rounded-[32px] sm:rounded-[44px] border-2 border-pink-100/90 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] relative z-20 mb-8 sm:mb-12">
       <div className="w-full">
-        
-        {/* Section Header: Pink Star + Featured Members on left, Controls + View All Members on right */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
           <div className="flex items-center gap-3">
             <Star className="w-6 h-6 text-[#ec4899] fill-[#ec4899]" />
@@ -41,12 +39,10 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
             </div>
           </div>
 
-          {/* Action buttons on header */}
           <div className="flex items-center gap-3 self-start sm:self-auto">
-            {/* Speed toggle chip */}
             <button
               id="toggle-pulse-speed-btn"
-              onClick={() => setPulseSpeed(s => s === 'normal' ? 'fast' : 'normal')}
+              onClick={() => setPulseSpeed((s) => (s === 'normal' ? 'fast' : 'normal'))}
               className="px-3 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-pink-700 hover:bg-pink-100 transition-colors text-xs font-bold flex items-center gap-1.5 shadow-sm cursor-pointer"
               title="Cambiar velocidad de pulso y rotación"
             >
@@ -54,7 +50,6 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
               <span>Velocidad: {pulseSpeed === 'normal' ? 'Suave' : 'Intensa'}</span>
             </button>
 
-            {/* View All Members Button */}
             {!showAll && (
               <button
                 id="view-all-members-link"
@@ -68,7 +63,6 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
           </div>
         </div>
 
-        {/* Member Cards Grid: with Glowing Rotating Pink Borders, Breathing Photos, and generous air below */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5 xl:gap-6">
           {displayedMembers.map((member, index) => {
             const isLiked = likedMemberIds.has(member.id);
@@ -83,10 +77,11 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
                   animationDelay: `${index * 0.3}s`,
                 }}
               >
-                {/* 1. ROTATING GLOWING PINK BORDER (Conic Gradient) */}
                 <div
                   className={`absolute -inset-[150%] w-[400%] h-[400%] -left-[150%] -top-[150%] pointer-events-none transition-opacity ${
-                    pulseSpeed === 'fast' ? 'animate-rotate-border-fast' : 'animate-rotate-border group-hover:animate-rotate-border-fast'
+                    pulseSpeed === 'fast'
+                      ? 'animate-rotate-border-fast'
+                      : 'animate-rotate-border group-hover:animate-rotate-border-fast'
                   }`}
                   style={{
                     background:
@@ -95,19 +90,14 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
                   }}
                 />
 
-                {/* 2. GLOWING SPARKLE FLIGHT CORNERS */}
                 <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-pink-300/80 blur-[2px] animate-sparkle-glow pointer-events-none z-20" />
                 <div className="absolute bottom-1 left-1 w-3 h-3 rounded-full bg-rose-400/80 blur-[2px] animate-sparkle-glow pointer-events-none z-20" />
 
-                {/* 3. INNER CARD CONTAINER */}
                 <div
                   id={`member-card-${member.id}`}
                   className="relative w-full h-full bg-gray-950 rounded-[18.5px] overflow-hidden z-10 flex flex-col"
                 >
-                  {/* Image Container with hidden overflow to crop shrinking & enlarging photo */}
                   <div className="relative w-full aspect-[3.7/5] overflow-hidden bg-gray-900 flex items-center justify-center">
-                    
-                    {/* PHOTO: Shrinks & Enlarges smoothly with rhythmic breathing */}
                     <img
                       src={member.image}
                       alt={`${member.name}, ${member.age}`}
@@ -119,25 +109,20 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
                       referrerPolicy="no-referrer"
                     />
 
-                    {/* Dark gradient for text legibility at bottom */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
 
-                    {/* Top Badges */}
                     <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between pointer-events-none z-20">
-                      {/* Online Pill Badge */}
                       <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#16a34a] text-white text-[11px] font-bold shadow-md backdrop-blur-xs">
                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                         <span>Online</span>
                       </div>
 
-                      {/* Green dot indicator with glowing ring */}
                       <span className="relative flex h-2.5 w-2.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#22c55e] border border-white/80 shadow-sm"></span>
                       </span>
                     </div>
 
-                    {/* Bottom Member Info Overlay */}
                     <div className="absolute bottom-3 left-3 right-12 text-left pointer-events-none z-20">
                       <div className="flex items-center gap-1 text-white">
                         <span className="text-sm sm:text-base font-bold tracking-tight drop-shadow-md">
@@ -152,7 +137,6 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
                       </p>
                     </div>
 
-                    {/* Floating Like Heart Button with Heartbeat */}
                     <button
                       id={`like-btn-${member.id}`}
                       aria-label={`Like ${member.name}`}
@@ -174,7 +158,6 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
             );
           })}
         </div>
-
       </div>
     </section>
   );

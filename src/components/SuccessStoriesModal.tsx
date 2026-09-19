@@ -1,7 +1,6 @@
 import React from 'react';
-import { X, Star, Heart, Sparkles } from 'lucide-react';
+import { X, Star, Heart } from 'lucide-react';
 import { SUCCESS_STORIES } from '../data/membersData';
-import { Testimonial } from '../types';
 
 interface SuccessStoriesModalProps {
   onClose: () => void;
@@ -12,8 +11,6 @@ export const SuccessStoriesModal: React.FC<SuccessStoriesModalProps> = ({ onClos
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-2xl bg-[#14082c] border border-pink-500/40 rounded-3xl overflow-hidden shadow-2xl shadow-pink-900/60 flex flex-col max-h-[85vh] text-white">
-        
-        {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 bg-[#1f0d3e] border-b border-pink-500/20">
           <div className="flex items-center gap-2">
             <Heart className="w-5 h-5 text-pink-400 fill-pink-500" />
@@ -21,13 +18,12 @@ export const SuccessStoriesModal: React.FC<SuccessStoriesModalProps> = ({ onClos
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-gray-400 hover:text-white rounded-full hover:bg-white/10"
+            className="p-1.5 text-gray-400 hover:text-white rounded-full hover:bg-white/10 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* List of stories */}
         <div className="p-6 overflow-y-auto space-y-6">
           {SUCCESS_STORIES.map((story) => (
             <div
@@ -66,7 +62,6 @@ export const SuccessStoriesModal: React.FC<SuccessStoriesModalProps> = ({ onClos
           ))}
         </div>
 
-        {/* Footer CTA */}
         <div className="p-4 bg-[#1a0a36] border-t border-pink-500/20 flex items-center justify-between">
           <span className="text-xs text-pink-200">Start your own love story today</span>
           <button
@@ -74,12 +69,11 @@ export const SuccessStoriesModal: React.FC<SuccessStoriesModalProps> = ({ onClos
               onClose();
               onJoinNow();
             }}
-            className="px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 font-extrabold text-xs text-white shadow-lg shadow-pink-500/40 hover:scale-105 transition-all"
+            className="px-6 py-2.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 font-extrabold text-xs text-white shadow-lg shadow-pink-500/40 hover:scale-105 transition-all cursor-pointer"
           >
             Create Your Profile 💖
           </button>
         </div>
-
       </div>
     </div>
   );
