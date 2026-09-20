@@ -34,7 +34,7 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
               </h2>
               <p className="text-xs text-pink-600 font-semibold flex items-center gap-1 mt-0.5">
                 <Sparkles className="w-3.5 h-3.5 text-pink-500 animate-spin-slow" />
-                <span>Bordes rosas giratorios & fotos con efecto dinámico</span>
+                <span>Dynamic rotating borders & vibrant member profiles</span>
               </p>
             </div>
           </div>
@@ -44,10 +44,10 @@ export const FeaturedMembers: React.FC<FeaturedMembersProps> = ({
               id="toggle-pulse-speed-btn"
               onClick={() => setPulseSpeed((s) => (s === 'normal' ? 'fast' : 'normal'))}
               className="px-3 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-pink-700 hover:bg-pink-100 transition-colors text-xs font-bold flex items-center gap-1.5 shadow-sm cursor-pointer"
-              title="Cambiar velocidad de pulso y rotación"
+              title="Toggle glow speed and border rotation"
             >
               <Wand2 className="w-3.5 h-3.5 text-pink-500" />
-              <span>Velocidad: {pulseSpeed === 'normal' ? 'Suave' : 'Intensa'}</span>
+              <span>Speed: {pulseSpeed === 'normal' ? 'Smooth' : 'Intense'}</span>
             </button>
 
             {!showAll && (

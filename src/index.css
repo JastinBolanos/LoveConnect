@@ -444,7 +444,7 @@
   border-radius: 4px;
 }
 
-/* Button Jump & Bounce Animations (Salten el botón) */
+/* Button Jump & Bounce Animations */
 @keyframes button-jump {
   0%, 100% {
     transform: translateY(0) scale(1);

@@ -25,13 +25,13 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
         <div>
           <h1 className="text-3xl sm:text-4xl font-black text-white flex items-center gap-3">
             <MessageCircle className="w-8 h-8 text-pink-400 fill-pink-500/30" />
-            <span>Tus Conversaciones</span>
+            <span>Your Conversations</span>
             <span className="text-xs font-bold px-3 py-1 rounded-full bg-pink-500/20 border border-pink-400/40 text-pink-300">
-              {unreadCount} Nuevos Mensajes
+              {unreadCount} New Messages
             </span>
           </h1>
           <p className="text-sm text-pink-200/80 mt-1">
-            Chatea con tus matches y conoce personas afines en tiempo real.
+            Chat with your matches and meet like-minded singles in real-time.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
           onClick={onBackToHome}
           className="text-xs sm:text-sm font-bold text-pink-400 hover:text-pink-300 transition-colors flex items-center gap-1 cursor-pointer"
         >
-          ← Volver a Inicio
+          ← Back to Home
         </button>
       </div>
 
@@ -105,7 +105,7 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
                     }}
                     className="hidden sm:inline-flex px-3.5 py-1.5 rounded-xl bg-pink-500/20 hover:bg-pink-500 text-xs font-bold text-pink-300 hover:text-white transition-all cursor-pointer"
                   >
-                    Abrir
+                    Open
                   </button>
                 </div>
               </div>
@@ -117,32 +117,32 @@ export const MessagesView: React.FC<MessagesViewProps> = ({
           <div className="bg-[#180b33] border border-pink-500/30 rounded-3xl p-6 shadow-xl">
             <div className="flex items-center gap-2 text-pink-400 font-extrabold text-sm mb-3">
               <Sparkles className="w-4 h-4" />
-              <span>Sugerencias para Iniciar Charlas</span>
+              <span>Conversation Starters</span>
             </div>
             <p className="text-xs text-pink-100/70 mb-4 leading-relaxed">
-              Las parejas que preguntan sobre música y viajes reciben un 82% más de respuestas el mismo día.
+              Matches who ask about music and travel receive 82% more replies on the same day.
             </p>
             <div className="space-y-2">
               <div className="p-3 bg-white/5 rounded-2xl text-xs text-pink-200 border border-pink-500/20 italic">
-                "¿Cuál es el mejor concierto o viaje que has vivido?"
+                "What is the best concert or trip you have ever experienced?"
               </div>
               <div className="p-3 bg-white/5 rounded-2xl text-xs text-pink-200 border border-pink-500/20 italic">
-                "Noté tu afinidad en arte... ¿qué proyecto te apasiona ahora?"
+                "I noticed your passion for art... what project are you excited about right now?"
               </div>
             </div>
           </div>
 
           <div className="bg-gradient-to-r from-pink-600 to-purple-600 rounded-3xl p-6 text-white shadow-xl text-center space-y-3">
             <Heart className="w-8 h-8 text-white fill-white mx-auto animate-bounce" />
-            <h4 className="font-extrabold text-base">¿Buscas más conexiones?</h4>
+            <h4 className="font-extrabold text-base">Looking for more connections?</h4>
             <p className="text-xs text-pink-100/90 leading-relaxed">
-              Explora nuevos perfiles verificados que coinciden con tus gustos y valores.
+              Discover verified singles who match your vibe, passions, and lifestyle.
             </p>
             <button
               onClick={onExploreSingles}
               className="w-full py-2.5 rounded-xl bg-white text-gray-900 font-bold text-xs hover:bg-pink-50 transition-colors shadow-md cursor-pointer"
             >
-              Explorar Solteros
+              Explore Singles
             </button>
           </div>
         </div>

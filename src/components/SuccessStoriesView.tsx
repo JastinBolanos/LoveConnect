@@ -52,7 +52,7 @@ export const SuccessStoriesView: React.FC<SuccessStoriesViewProps> = ({
         <div className="flex items-center gap-2">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-pink-500/20 border border-pink-400/40 text-pink-300">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>Historias Reales & Parejas Felices</span>
+            <span>Real Stories & Happy Couples</span>
           </span>
         </div>
 
@@ -60,39 +60,39 @@ export const SuccessStoriesView: React.FC<SuccessStoriesViewProps> = ({
           onClick={onBackToHome}
           className="text-xs sm:text-sm font-bold text-pink-400 hover:text-pink-300 transition-colors flex items-center gap-1 cursor-pointer"
         >
-          ← Volver a Inicio
+          ← Back to Home
         </button>
       </div>
 
       <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
         <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight mb-4">
-          Donde la Ciencia del Amor se Convierte en{' '}
+          Where Dating Science Turns Into{' '}
           <span className="bg-gradient-to-r from-pink-400 via-rose-300 to-amber-300 bg-clip-text text-transparent">
-            Para Siempre
+            Forever
           </span>{' '}
           💖
         </h1>
         <p className="text-sm sm:text-base text-pink-100/80 leading-relaxed">
-          Más de 14,800 parejas se han conocido, comprometido y casado a través de LoveConnect.
-          Conoce sus testimonios, sus momentos mágicos y cómo encontraron a su alma gemela.
+          Over 14,800 couples have met, gotten engaged, and married through LoveConnect.
+          Discover their stories, magical milestones, and how they found their soulmates.
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8">
           <div className="bg-[#180b33]/90 border border-pink-500/30 rounded-2xl p-4 shadow-lg">
             <span className="text-2xl sm:text-3xl font-black text-pink-400 block">14,820+</span>
-            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Bodas y Compromisos</span>
+            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Weddings & Engagements</span>
           </div>
           <div className="bg-[#180b33]/90 border border-pink-500/30 rounded-2xl p-4 shadow-lg">
             <span className="text-2xl sm:text-3xl font-black text-amber-300 block">98.6%</span>
-            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Afinidad Neuronal</span>
+            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Neural Compatibility</span>
           </div>
           <div className="bg-[#180b33]/90 border border-pink-500/30 rounded-2xl p-4 shadow-lg">
-            <span className="text-2xl sm:text-3xl font-black text-emerald-400 block">21 Días</span>
-            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Promedio a 1ra Cita</span>
+            <span className="text-2xl sm:text-3xl font-black text-emerald-400 block">21 Days</span>
+            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Avg. Days to 1st Date</span>
           </div>
           <div className="bg-[#180b33]/90 border border-pink-500/30 rounded-2xl p-4 shadow-lg">
             <span className="text-2xl sm:text-3xl font-black text-purple-300 block">45+</span>
-            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Países Conectados</span>
+            <span className="text-[11px] sm:text-xs text-pink-200/80 font-semibold">Countries Connected</span>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@ export const SuccessStoriesView: React.FC<SuccessStoriesViewProps> = ({
                   : 'bg-white/10 hover:bg-white/20 text-pink-200 hover:text-white border border-pink-500/20'
               }`}
             >
-              {tag === 'All' ? '🌟 Todas las Historias' : tag}
+              {tag === 'All' ? '🌟 All Stories' : tag}
             </button>
           );
         })}
@@ -187,7 +187,7 @@ export const SuccessStoriesView: React.FC<SuccessStoriesViewProps> = ({
                 <div className="pt-4 border-t border-pink-500/20 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-400">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Pareja Verificada</span>
+                    <span>Verified Couple</span>
                   </div>
 
                   <button
@@ -212,13 +212,13 @@ export const SuccessStoriesView: React.FC<SuccessStoriesViewProps> = ({
         <div className="max-w-xl text-center md:text-left space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-black tracking-wide">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>¿Listo para escribir tu propia historia?</span>
+            <span>Ready to write your own love story?</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-white leading-tight">
-            Tu historia de amor comienza con un simple saludo
+            Your love story begins with a simple hello
           </h2>
           <p className="text-sm sm:text-base text-pink-100/90 leading-relaxed">
-            Miles de personas afines a tu estilo de vida, valores e intereses están listas para conocerte hoy.
+            Thousands of verified singles who match your passions, goals, and lifestyle are waiting to meet you.
           </p>
         </div>
 
@@ -227,14 +227,14 @@ export const SuccessStoriesView: React.FC<SuccessStoriesViewProps> = ({
             onClick={onFindMatch}
             className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-white text-gray-900 font-extrabold text-sm shadow-xl hover:bg-pink-50 hover:scale-105 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span>Ver Mis Matches</span>
+            <span>View My Matches</span>
             <ArrowRight className="w-4 h-4 text-pink-600" />
           </button>
           <button
             onClick={onJoinFree}
             className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-black/30 hover:bg-black/40 border border-white/30 text-white font-extrabold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            <span>Unirme Gratis</span>
+            <span>Join for Free</span>
           </button>
         </div>
       </div>

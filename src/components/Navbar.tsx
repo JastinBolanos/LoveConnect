@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Heart, Search, Globe, ChevronDown, Bell, Sparkles, MessageCircle } from 'lucide-react';
+import React from 'react';
+import { Heart, Search, MessageCircle } from 'lucide-react';
 import { SparkJoinButton } from './SparkJoinButton';
 import { TabType } from '../types';
 
@@ -22,10 +22,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   setActiveTab,
   onSearchClick,
 }) => {
-  const [lang, setLang] = useState('English');
-  const [langMenuOpen, setLangMenuOpen] = useState(false);
-
-  const languages = ['English', 'Español', 'Français', 'Deutsch', 'Português'];
   const tabs: TabType[] = ['Home', 'Browse', 'Matches', 'Messages', 'Success Stories', 'Blog'];
 
   return (
@@ -106,36 +102,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-pink-500 rounded-full ring-2 ring-[#120826] animate-ping" />
             )}
           </button>
-
-          <div className="relative hidden xl:block">
-            <button
-              onClick={() => setLangMenuOpen(!langMenuOpen)}
-              className="flex items-center gap-1.5 text-xs font-semibold text-gray-300 hover:text-white py-2 px-3 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
-            >
-              <Globe className="w-3.5 h-3.5 text-pink-400" />
-              <span>{lang}</span>
-              <ChevronDown className="w-3 h-3 text-gray-400" />
-            </button>
-
-            {langMenuOpen && (
-              <div className="absolute right-0 mt-2 w-32 bg-[#1b0c38] border border-pink-500/30 rounded-2xl shadow-xl py-2 z-50 animate-in fade-in zoom-in-95">
-                {languages.map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => {
-                      setLang(l);
-                      setLangMenuOpen(false);
-                    }}
-                    className={`w-full text-left px-4 py-1.5 text-xs font-medium hover:bg-pink-600/30 transition-colors ${
-                      lang === l ? 'text-pink-400 font-bold' : 'text-gray-300'
-                    }`}
-                  >
-                    {l}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
 
           <button
             id="nav-login-btn"
